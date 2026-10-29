@@ -17,24 +17,34 @@ export const get_hands_points = (hands: Card[][]): number => {
                 break;
             }
         }
-        let hasCouleur = true;
+        let hasEnseigne = true;
         const firstEnseigne = hand[0]?.enseigne;
         for (const card of hand) {
             if (card.enseigne !== firstEnseigne) {
-                hasCouleur = false;
+                hasEnseigne = false;
                 break;
             }
         }
+        const valueCounts = new Map<number, number>();
+        for (const value of values) {
+            valueCounts.set(value, (valueCounts.get(value) ?? 0) + 1);
+        }
+        const counts = [...valueCounts.values()];
+        const hasFull = counts.includes(3) && counts.includes(2);
         const hasBrelan = values.some((value) =>
             values.filter((cardValue) => cardValue === value).length === 3
         );
 
-        if (hasCouleur) {
+        if (hasEnseigne) {
             return total + 45;
         }
 
         if (hasSuite) {
             return total + 40;
+        }
+
+        if (hasFull) {
+            return total + 50;
         }
 
         if (hasBrelan) {
