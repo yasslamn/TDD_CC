@@ -17,9 +17,21 @@ export const get_hands_points = (hands: Card[][]): number => {
                 break;
             }
         }
+        let hasCouleur = true;
+        const firstEnseigne = hand[0]?.enseigne;
+        for (const card of hand) {
+            if (card.enseigne !== firstEnseigne) {
+                hasCouleur = false;
+                break;
+            }
+        }
         const hasBrelan = values.some((value) =>
             values.filter((cardValue) => cardValue === value).length === 3
         );
+
+        if (hasCouleur) {
+            return total + 45;
+        }
 
         if (hasSuite) {
             return total + 40;
