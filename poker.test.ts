@@ -50,4 +50,16 @@ describe("Poker", () => {
 
     expect(get_hands_points([hand])).toBe(45);
   });
+
+  it("scores a full with 50 points", () => {
+    const hand = [
+      new Card(ENSEIGNE.COEUR, VALEUR.SEPT),
+      new Card(ENSEIGNE.PIQUE, VALEUR.SEPT),
+      new Card(ENSEIGNE.CARREAU, VALEUR.SEPT),
+      new Card(ENSEIGNE.TREFLE, VALEUR.NEUF),
+      new Card(ENSEIGNE.PIQUE, VALEUR.NEUF),
+    ];
+
+    expect(get_hands_points([hand])).toBe(50);
+  });
 });
