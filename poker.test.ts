@@ -29,13 +29,25 @@ describe("Poker", () => {
 
   it("scores a suite with 40 points", () => {
     const hand = [
-        new Card(ENSEIGNE.COEUR, VALEUR.DEUX),
-        new Card(ENSEIGNE.PIQUE, VALEUR.TROIS),
-        new Card(ENSEIGNE.CARREAU, VALEUR.QUATRE),
-        new Card(ENSEIGNE.TREFLE, VALEUR.CINQ),
-        new Card(ENSEIGNE.COEUR, VALEUR.SIX),
+      new Card(ENSEIGNE.COEUR, VALEUR.DEUX),
+      new Card(ENSEIGNE.PIQUE, VALEUR.TROIS),
+      new Card(ENSEIGNE.CARREAU, VALEUR.QUATRE),
+      new Card(ENSEIGNE.TREFLE, VALEUR.CINQ),
+      new Card(ENSEIGNE.COEUR, VALEUR.SIX),
     ];
 
     expect(get_hands_points([hand])).toBe(40);
-});
+  });
+
+  it("scores a couleur with 45 points", () => {
+    const hand = [
+      new Card(ENSEIGNE.COEUR, VALEUR.DEUX),
+      new Card(ENSEIGNE.COEUR, VALEUR.SIX),
+      new Card(ENSEIGNE.COEUR, VALEUR.HUIT),
+      new Card(ENSEIGNE.COEUR, VALEUR.DAME),
+      new Card(ENSEIGNE.COEUR, VALEUR.AS),
+    ];
+
+    expect(get_hands_points([hand])).toBe(45);
+  });
 });
